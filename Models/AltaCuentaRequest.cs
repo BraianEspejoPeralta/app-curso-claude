@@ -9,6 +9,7 @@ namespace app_curso_claude.Models
         public string Titular { get; set; } = string.Empty;
 
         [Range(0, 1_000_000_000, ErrorMessage = "El saldo inicial debe estar entre 0 y 1.000.000.000.")]
+        [MaximoDecimales(2, ErrorMessage = "El saldo inicial no puede tener más de 2 decimales.")]
         public decimal SaldoInicial { get; set; }
     }
 }
