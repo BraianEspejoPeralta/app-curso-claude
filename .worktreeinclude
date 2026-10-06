@@ -1,0 +1,3 @@
+# Archivos que Claude Code copia del checkout principal a cada worktree nuevo
+# (claude -w y subagentes con isolation: worktree). Solo aplica a archivos ignorados por git.
+appsettings.Development.json
