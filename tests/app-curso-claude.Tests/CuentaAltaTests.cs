@@ -47,5 +47,23 @@ namespace app_curso_claude.Tests
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
+
+        [Fact]
+        public async Task Alta_ConSaldoDeTresDecimales_DevuelveBadRequest()
+        {
+            var response = await _client.PostAsJsonAsync("/Cuenta/Alta", new { titular = "Ana", saldoInicial = 100.999m });
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task Alta_ConSaldoDeDosDecimales_DevuelveCreated()
+        {
+            var response = await _client.PostAsJsonAsync("/Cuenta/Alta", new { titular = "Ana", saldoInicial = 100.99m });
+
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            var cuenta = await response.Content.ReadFromJsonAsync<Cuenta>();
+            Assert.Equal(100.99m, cuenta!.Saldo);
+        }
     }
 }
