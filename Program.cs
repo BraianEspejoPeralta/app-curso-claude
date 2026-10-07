@@ -4,6 +4,8 @@ var builder =WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// === Application services (register here) ===
 builder.Services.AddSingleton<IUsuarioRepository, InMemoryUsuarioRepository>();
 builder.Services.AddSingleton<ICuentaRepository, InMemoryCuentaRepository>();
 
